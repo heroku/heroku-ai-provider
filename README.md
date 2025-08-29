@@ -1,4 +1,4 @@
-# @ai-sdk/heroku
+# heroku-ai-provider
 
 Heroku AI embeddings provider for the Vercel AI SDK.
 
