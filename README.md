@@ -73,6 +73,25 @@ const { embeddings } = await model.doEmbed({
 });
 ```
 
+## Running Examples
+
+We have created some examples to demonstrate common use cases. To run
+an example, use the command:
+
+```bash
+pnpm example <file> <function>
+```
+
+### Argument Descriptions
+- `<file>`: example files use the naming convention: `<file>.example.ts`. They can be found in the `examples/` directory.
+- `<function>`: the name of the function, within the example file, to run.
+
+### Example Usage
+
+```bash
+pnpm example embeddings batch
+```
+
 ## API Reference
 
 ### `createHeroku(options?)`
