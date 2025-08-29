@@ -45,6 +45,13 @@ describe('doEmbed', () => {
     };
   }
 
+  it('should not accept empty values', async () => {
+    prepareJsonResponse();
+
+    const resp = await model.doEmbed({values: [] });
+    console.log(resp)
+  });
+
   it('should extract embedding', async () => {
     prepareJsonResponse();
 
