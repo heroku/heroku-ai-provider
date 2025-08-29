@@ -1,4 +1,5 @@
 import { embed, embedMany } from "ai";
+import { EmbeddingModelV2Embedding } from "@ai-sdk/provider";
 import { getEmbeddingModelFromEnv, cosineSimilarity } from "./utils";
 
 /**
@@ -63,4 +64,42 @@ export async function similarity() {
   similarities
   .slice(0,3)
   .forEach((similarity, rank) => console.log(`${rank + 1}. ${similarity.document}`))
+}
+
+export async function batch() {
+  const model = getEmbeddingModelFromEnv();
+
+  const documents = Array.from(
+                      { length: 50 }, 
+                      (_, i) => (
+                        `This is document number ${ i + 1 }. It pertains to the topic ${(i % 5) + 1}`
+                      )
+                    )
+
+  console.log(`Processing ${documents.length} documents...`);
+  const start = Date.now();
+
+  let embeddings: EmbeddingModelV2Embedding[];
+
+  try {
+    const response = await embedMany({
+      model,
+      values: documents
+    });
+
+    embeddings = response.embeddings;
+  } catch(e) {
+    console.error("Error in batch processing example:", e);
+    process.exit(1);
+  }
+
+  const end         = Date.now();
+  const elapsedTime = end - start;
+  const avgTime     = (elapsedTime / documents.length).toFixed(2);
+
+  console.log(`Documents processed:          ${documents.length}`);
+  console.log(`Embeddings generated:         ${embeddings.length}`);
+  console.log(`Embedding dimensions:         ${embeddings[0]?.length}`);
+  console.log(`Processing time:              ${elapsedTime}ms`);
+  console.log(`Processing time per document: ${avgTime}ms`);
 }
