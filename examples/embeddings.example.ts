@@ -79,19 +79,11 @@ export async function batch() {
   console.log(`Processing ${documents.length} documents...`);
   const start = Date.now();
 
-  let embeddings: EmbeddingModelV2Embedding[];
 
-  try {
-    const response = await embedMany({
-      model,
-      values: documents
-    });
-
-    embeddings = response.embeddings;
-  } catch(e) {
-    console.error("Error in batch processing example:", e);
-    process.exit(1);
-  }
+  const { embeddings } = await embedMany({
+    model,
+    values: documents
+  });
 
   const end         = Date.now();
   const elapsedTime = end - start;
