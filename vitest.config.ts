@@ -5,5 +5,14 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     include: ['**/*.test.ts'],
+    coverage: {
+      exclude: [
+        'dist/**/*', 
+        'examples/**/*', 
+        'eslint.config.mjs',
+        'tsup.config.ts',
+        'vitest.config.ts',
+      ]
+    }
   },
 });
