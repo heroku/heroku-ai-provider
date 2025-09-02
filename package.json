@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "prettier-check": "prettier --check \"**/*.{js,ts,tsx,md}\"",
     "prettier-fix": "prettier --write \"**/*.{js,ts,tsx,md}\"",
-    "example": "tsx examples/runner.ts"
+    "example": "tsx examples/runner.ts",
+    "type-check": "tsc --build"
   },
   "keywords": [],
   "author": "",
