@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
+    "lint": "eslint .",
     "example": "tsx examples/runner.ts"
   },
   "keywords": [],
