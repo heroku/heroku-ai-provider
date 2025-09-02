@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { EmbeddingModelV2Embedding } from '@ai-sdk/provider';
+import { EmbeddingModelV2Embedding, TooManyEmbeddingValuesForCallError } from '@ai-sdk/provider';
 import { createTestServer } from '@ai-sdk/provider-utils/test';
 import { createHeroku } from './heroku-provider';
 
@@ -56,6 +56,11 @@ describe('doEmbed', () => {
   it('should raise an AI_APICallError when an error response is received', async () => {
     prepareErrorResponse();
     await expect(model.doEmbed({ values: [] })).rejects.toThrow('Bad Request');
+  });
+
+  it('should raise an error when the number of values to be embedded exceeds the maximum', async () => {
+    const tooManyValues = Array.from({ length: 100 }, () => "Are we there yet?");
+    await expect(model.doEmbed({ values: tooManyValues })).rejects.toThrow(TooManyEmbeddingValuesForCallError);
   });
 
   it('should extract embedding', async () => {
