@@ -73,6 +73,12 @@ const { embeddings } = await model.doEmbed({
 });
 ```
 
+## Running Tests
+
+```bash
+pnpm test
+```
+
 ## Running Examples
 
 We have created some examples to demonstrate common use cases. To run

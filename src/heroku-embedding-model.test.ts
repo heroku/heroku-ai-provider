@@ -45,11 +45,17 @@ describe('doEmbed', () => {
     };
   }
 
-  it('should not accept empty values', async () => {
-    prepareJsonResponse();
+  function prepareErrorResponse() {
+    server.urls['https://us.inference.heroku.com/v1/embeddings'].response = {
+      type: 'error',
+      status: 400,
+      body: '{ "error": "{\"code\":400,\"message\":\"error parsing JSON\",\"type\":\"invalid_request\"}" }'
+    }
+  }
 
-    const resp = await model.doEmbed({values: [] });
-    console.log(resp)
+  it('should raise an AI_APICallError when an error response is received', async () => {
+    prepareErrorResponse();
+    await expect(model.doEmbed({ values: [] })).rejects.toThrow('Bad Request');
   });
 
   it('should extract embedding', async () => {
