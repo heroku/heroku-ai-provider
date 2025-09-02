@@ -49,7 +49,7 @@ describe('doEmbed', () => {
     server.urls['https://us.inference.heroku.com/v1/embeddings'].response = {
       type: 'error',
       status: 400,
-      body: '{ "error": "{\"code\":400,\"message\":\"error parsing JSON\",\"type\":\"invalid_request\"}" }'
+      body: '{ "error": "{\\"code\\":400,\\"message\\":\\"error parsing JSON\\",\\"type\\":\\"invalid_request\\"}" }'
     }
   }
 

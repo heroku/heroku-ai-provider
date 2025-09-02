@@ -49,12 +49,14 @@ describe('HerokuProvider', () => {
   describe('function call', () => {
     it('should throw error when called with new keyword', () => {
       expect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         new (provider as any)('model-id');
       }).toThrow('cannot be called with the new keyword');
     });
 
     it('should throw error for unsupported model type', () => {
       expect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (provider as any)('gpt-4');
       }).toThrow(/No such languageModel/i);
     });

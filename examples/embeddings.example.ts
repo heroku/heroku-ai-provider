@@ -1,5 +1,4 @@
 import { embed, embedMany } from "ai";
-import { EmbeddingModelV2Embedding } from "@ai-sdk/provider";
 import { getEmbeddingModelFromEnv, cosineSimilarity } from "./utils";
 
 /**
