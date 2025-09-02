@@ -1,7 +1,7 @@
-import { z } from 'zod/v4';
+import { z } from "zod/v4";
 
 export type HerokuEmbeddingModelId =
-  | 'cohere-embed-multilingual'
+  | "cohere-embed-multilingual"
   | (string & {});
 
 export const herokuEmbeddingOptions = z.object({
@@ -14,19 +14,19 @@ export const herokuEmbeddingOptions = z.object({
    * - "clustering": Used for embeddings run through a clustering algorithm.
    */
   inputType: z
-    .enum(['search_document', 'search_query', 'classification', 'clustering'])
+    .enum(["search_document", "search_query", "classification", "clustering"])
     .optional(),
 
   /**
    * Determines the encoding format of the model's output. Default is `raw`.
    */
-  encodingFormat: z.enum(['raw', 'base64']).optional(),
+  encodingFormat: z.enum(["raw", "base64"]).optional(),
 
   /**
    * Specifies the type(s) of embeddings to return. Default is `float`.
    */
   embeddingType: z
-    .enum(['float', 'int8', 'uint8', 'binary', 'ubinary'])
+    .enum(["float", "int8", "uint8", "binary", "ubinary"])
     .optional(),
 
   /**

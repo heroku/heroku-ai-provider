@@ -24,7 +24,6 @@ If it's a feature, explain how it works and any limitations.
 
 ## Checklist
 
-
 - [ ] I’ve added or updated unit tests where necessary
 - [ ] I’ve added or updated documentation
 - [ ] I’ve manually tested the functionality in this PR

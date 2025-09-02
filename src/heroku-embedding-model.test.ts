@@ -1,28 +1,31 @@
-import { describe, expect, it, vi } from 'vitest';
-import { EmbeddingModelV2Embedding, TooManyEmbeddingValuesForCallError } from '@ai-sdk/provider';
-import { createTestServer } from '@ai-sdk/provider-utils/test';
-import { createHeroku } from './heroku-provider';
+import { describe, expect, it, vi } from "vitest";
+import {
+  EmbeddingModelV2Embedding,
+  TooManyEmbeddingValuesForCallError,
+} from "@ai-sdk/provider";
+import { createTestServer } from "@ai-sdk/provider-utils/test";
+import { createHeroku } from "./heroku-provider";
 
 const dummyEmbeddings = [
   [0.1, 0.2, 0.3, 0.4, 0.5],
   [0.6, 0.7, 0.8, 0.9, 1.0],
 ];
-const testValues = ['sunny day at the beach', 'rainy day in the city'];
+const testValues = ["sunny day at the beach", "rainy day in the city"];
 
-const dummyBaseUrl = 'https://us.inference.heroku.com';
-const dummyKey = 'heroku-test-key';
+const dummyBaseUrl = "https://us.inference.heroku.com";
+const dummyKey = "heroku-test-key";
 
-vi.stubEnv('HEROKU_EMBEDDING_URL', dummyBaseUrl);
-vi.stubEnv('HEROKU_EMBEDDING_KEY', dummyKey);
+vi.stubEnv("HEROKU_EMBEDDING_URL", dummyBaseUrl);
+vi.stubEnv("HEROKU_EMBEDDING_KEY", dummyKey);
 
 const provider = createHeroku();
-const model = provider.textEmbeddingModel('cohere-embed-multilingual');
+const model = provider.textEmbeddingModel("cohere-embed-multilingual");
 
 const server = createTestServer({
-  'https://us.inference.heroku.com/v1/embeddings': {},
+  "https://us.inference.heroku.com/v1/embeddings": {},
 });
 
-describe('doEmbed', () => {
+describe("doEmbed", () => {
   function prepareJsonResponse({
     embeddings = dummyEmbeddings,
     usage = { prompt_tokens: 8, total_tokens: 8 },
@@ -32,8 +35,8 @@ describe('doEmbed', () => {
     usage?: { prompt_tokens: number; total_tokens: number };
     headers?: Record<string, string>;
   } = {}) {
-    server.urls['https://us.inference.heroku.com/v1/embeddings'].response = {
-      type: 'json-value',
+    server.urls["https://us.inference.heroku.com/v1/embeddings"].response = {
+      type: "json-value",
       headers,
       body: {
         data: embeddings.map((embedding, index) => ({
@@ -46,49 +49,54 @@ describe('doEmbed', () => {
   }
 
   function prepareErrorResponse() {
-    server.urls['https://us.inference.heroku.com/v1/embeddings'].response = {
-      type: 'error',
+    server.urls["https://us.inference.heroku.com/v1/embeddings"].response = {
+      type: "error",
       status: 400,
-      body: '{ "error": "{\\"code\\":400,\\"message\\":\\"error parsing JSON\\",\\"type\\":\\"invalid_request\\"}" }'
-    }
+      body: '{ "error": "{\\"code\\":400,\\"message\\":\\"error parsing JSON\\",\\"type\\":\\"invalid_request\\"}" }',
+    };
   }
 
-  it('should raise an AI_APICallError when an error response is received', async () => {
+  it("should raise an AI_APICallError when an error response is received", async () => {
     prepareErrorResponse();
-    await expect(model.doEmbed({ values: [] })).rejects.toThrow('Bad Request');
+    await expect(model.doEmbed({ values: [] })).rejects.toThrow("Bad Request");
   });
 
-  it('should raise an error when the number of values to be embedded exceeds the maximum', async () => {
-    const tooManyValues = Array.from({ length: 100 }, () => "Are we there yet?");
-    await expect(model.doEmbed({ values: tooManyValues })).rejects.toThrow(TooManyEmbeddingValuesForCallError);
+  it("should raise an error when the number of values to be embedded exceeds the maximum", async () => {
+    const tooManyValues = Array.from(
+      { length: 100 },
+      () => "Are we there yet?",
+    );
+    await expect(model.doEmbed({ values: tooManyValues })).rejects.toThrow(
+      TooManyEmbeddingValuesForCallError,
+    );
   });
 
-  it('should extract embedding', async () => {
+  it("should extract embedding", async () => {
     prepareJsonResponse();
 
     const { embeddings } = await model.doEmbed({ values: testValues });
     expect(embeddings).toStrictEqual(dummyEmbeddings);
   });
 
-  it('should expose the raw response', async () => {
+  it("should expose the raw response", async () => {
     prepareJsonResponse({
-      headers: { 'test-header': 'test-value' },
+      headers: { "test-header": "test-value" },
     });
 
     const { response } = await model.doEmbed({ values: testValues });
 
     expect(response?.headers).toStrictEqual({
       // default headers:
-      'content-length': '145',
-      'content-type': 'application/json',
+      "content-length": "145",
+      "content-type": "application/json",
 
       // custom header
-      'test-header': 'test-value',
+      "test-header": "test-value",
     });
     expect(response).toMatchSnapshot();
   });
 
-  it('should extract usage', async () => {
+  it("should extract usage", async () => {
     prepareJsonResponse({
       usage: { prompt_tokens: 20, total_tokens: 20 },
     });
@@ -98,53 +106,53 @@ describe('doEmbed', () => {
     expect(usage).toStrictEqual({ tokens: 20 });
   });
 
-  it('should pass the model and the values', async () => {
+  it("should pass the model and the values", async () => {
     prepareJsonResponse();
 
     await model.doEmbed({
       values: testValues,
-      providerOptions: { heroku: { encodingFormat: 'raw' } },
+      providerOptions: { heroku: { encodingFormat: "raw" } },
     });
 
     expect(await server.calls[0]?.requestBodyJson).toStrictEqual({
-      model: 'cohere-embed-multilingual',
+      model: "cohere-embed-multilingual",
       input: testValues,
-      encoding_format: 'raw',
+      encoding_format: "raw",
     });
   });
 
-  it('should pass custom embedding options', async () => {
+  it("should pass custom embedding options", async () => {
     prepareJsonResponse();
 
-    await provider.textEmbeddingModel('cohere-embed-multilingual').doEmbed({
+    await provider.textEmbeddingModel("cohere-embed-multilingual").doEmbed({
       values: testValues,
       providerOptions: {
         heroku: {
-          inputType: 'search_document',
+          inputType: "search_document",
         },
       },
     });
 
     expect(await server.calls[0]?.requestBodyJson).toStrictEqual({
-      model: 'cohere-embed-multilingual',
+      model: "cohere-embed-multilingual",
       input: testValues,
-      input_type: 'search_document',
+      input_type: "search_document",
     });
   });
 
-  it('should pass headers', async () => {
+  it("should pass headers", async () => {
     prepareJsonResponse();
 
     const provider = createHeroku({
       headers: {
-        'Custom-Provider-Header': 'provider-header-value',
+        "Custom-Provider-Header": "provider-header-value",
       },
     });
 
-    await provider.textEmbeddingModel('cohere-embed-multilingual').doEmbed({
+    await provider.textEmbeddingModel("cohere-embed-multilingual").doEmbed({
       values: testValues,
       headers: {
-        'Custom-Request-Header': 'request-header-value',
+        "Custom-Request-Header": "request-header-value",
       },
     });
 
@@ -152,18 +160,18 @@ describe('doEmbed', () => {
 
     expect(requestHeaders).toStrictEqual({
       authorization: `Bearer ${dummyKey}`,
-      'content-type': 'application/json',
-      'custom-provider-header': 'provider-header-value',
-      'custom-request-header': 'request-header-value',
+      "content-type": "application/json",
+      "custom-provider-header": "provider-header-value",
+      "custom-request-header": "request-header-value",
     });
   });
 
-  it('should prefer an explicitly defined apiKey over the HEROKU_EMBEDDING_KEY', async () => {
+  it("should prefer an explicitly defined apiKey over the HEROKU_EMBEDDING_KEY", async () => {
     prepareJsonResponse();
-    const key = 'aromatic-steering-wheel';
+    const key = "aromatic-steering-wheel";
     const provider = createHeroku({ apiKey: key });
 
-    await provider.textEmbeddingModel('cohere-embed-multilingual').doEmbed({
+    await provider.textEmbeddingModel("cohere-embed-multilingual").doEmbed({
       values: testValues,
     });
 
@@ -173,12 +181,12 @@ describe('doEmbed', () => {
     expect(authorizationHeader).toStrictEqual(`Bearer ${key}`);
   });
 
-  it('should use the HEROKU_EMBEDDING_URL by default', async () => {
+  it("should use the HEROKU_EMBEDDING_URL by default", async () => {
     prepareJsonResponse();
 
     const provider = createHeroku();
 
-    await provider.textEmbeddingModel('cohere-embed-multilingual').doEmbed({
+    await provider.textEmbeddingModel("cohere-embed-multilingual").doEmbed({
       values: testValues,
     });
 
@@ -186,7 +194,7 @@ describe('doEmbed', () => {
     expect(requestUrl).toStrictEqual(`${dummyBaseUrl}/v1/embeddings`);
   });
 
-  it('should throw error when too many values are provided', async () => {
+  it("should throw error when too many values are provided", async () => {
     const tooManyValues = Array.from({ length: 100 }, (_, i) => `text ${i}`);
 
     await expect(model.doEmbed({ values: tooManyValues })).rejects.toThrow(
@@ -194,7 +202,7 @@ describe('doEmbed', () => {
     );
   });
 
-  it('should handle abort signal', async () => {
+  it("should handle abort signal", async () => {
     const abortController = new AbortController();
     abortController.abort();
 
@@ -207,24 +215,24 @@ describe('doEmbed', () => {
   });
 });
 
-describe('model properties', () => {
-  it('should have correct specification version', () => {
-    expect(model.specificationVersion).toBe('v2');
+describe("model properties", () => {
+  it("should have correct specification version", () => {
+    expect(model.specificationVersion).toBe("v2");
   });
 
-  it('should have correct provider', () => {
-    expect(model.provider).toBe('heroku.textEmbedding');
+  it("should have correct provider", () => {
+    expect(model.provider).toBe("heroku.textEmbedding");
   });
 
-  it('should have correct model ID', () => {
-    expect(model.modelId).toBe('cohere-embed-multilingual');
+  it("should have correct model ID", () => {
+    expect(model.modelId).toBe("cohere-embed-multilingual");
   });
 
-  it('should support parallel calls', () => {
+  it("should support parallel calls", () => {
     expect(model.supportsParallelCalls).toBe(true);
   });
 
-  it('should have correct max embeddings per call', () => {
+  it("should have correct max embeddings per call", () => {
     expect(model.maxEmbeddingsPerCall).toBe(96);
   });
 });

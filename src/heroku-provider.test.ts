@@ -1,63 +1,63 @@
-import { describe, expect, it, vi } from 'vitest';
-import { createHeroku } from './heroku-provider';
+import { describe, expect, it, vi } from "vitest";
+import { createHeroku } from "./heroku-provider";
 
-describe('HerokuProvider', () => {
+describe("HerokuProvider", () => {
   const provider = createHeroku();
 
-  describe('embedding', () => {
-    it('should create embedding model with correct model ID', () => {
-      vi.stubEnv('HEROKU_EMBEDDING_URL', 'https://test.inference.heroku.com');
-      vi.stubEnv('HEROKU_EMBEDDING_KEY', 'abcdef0123456789');
+  describe("embedding", () => {
+    it("should create embedding model with correct model ID", () => {
+      vi.stubEnv("HEROKU_EMBEDDING_URL", "https://test.inference.heroku.com");
+      vi.stubEnv("HEROKU_EMBEDDING_KEY", "abcdef0123456789");
 
-      const model = provider.embedding('cohere-embed-multilingual');
+      const model = provider.embedding("cohere-embed-multilingual");
 
       expect(model).toBeDefined();
-      expect(model.modelId).toBe('cohere-embed-multilingual');
-      expect(model.provider).toBe('heroku.textEmbedding');
+      expect(model.modelId).toBe("cohere-embed-multilingual");
+      expect(model.provider).toBe("heroku.textEmbedding");
     });
   });
 
-  describe('textEmbeddingModel', () => {
-    it('should create embedding model with correct model ID', () => {
-      vi.stubEnv('HEROKU_EMBEDDING_URL', 'https://test.inference.heroku.com');
-      vi.stubEnv('HEROKU_EMBEDDING_KEY', 'abcdef0123456789');
+  describe("textEmbeddingModel", () => {
+    it("should create embedding model with correct model ID", () => {
+      vi.stubEnv("HEROKU_EMBEDDING_URL", "https://test.inference.heroku.com");
+      vi.stubEnv("HEROKU_EMBEDDING_KEY", "abcdef0123456789");
 
-      const model = provider.textEmbeddingModel('cohere-embed-multilingual');
+      const model = provider.textEmbeddingModel("cohere-embed-multilingual");
 
       expect(model).toBeDefined();
-      expect(model.modelId).toBe('cohere-embed-multilingual');
-      expect(model.provider).toBe('heroku.textEmbedding');
+      expect(model.modelId).toBe("cohere-embed-multilingual");
+      expect(model.provider).toBe("heroku.textEmbedding");
     });
   });
 
-  describe('languageModel', () => {
-    it('should throw error for unsupported model type', () => {
+  describe("languageModel", () => {
+    it("should throw error for unsupported model type", () => {
       expect(() => {
-        provider.languageModel('gpt-4');
+        provider.languageModel("gpt-4");
       }).toThrow(/No such languageModel/);
     });
   });
 
-  describe('imageModel', () => {
-    it('should throw error for unsupported model type', () => {
+  describe("imageModel", () => {
+    it("should throw error for unsupported model type", () => {
       expect(() => {
-        provider.imageModel('dall-e-3');
+        provider.imageModel("dall-e-3");
       }).toThrow(/No such imageModel/);
     });
   });
 
-  describe('function call', () => {
-    it('should throw error when called with new keyword', () => {
+  describe("function call", () => {
+    it("should throw error when called with new keyword", () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        new (provider as any)('model-id');
-      }).toThrow('cannot be called with the new keyword');
+        new (provider as any)("model-id");
+      }).toThrow("cannot be called with the new keyword");
     });
 
-    it('should throw error for unsupported model type', () => {
+    it("should throw error for unsupported model type", () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (provider as any)('gpt-4');
+        (provider as any)("gpt-4");
       }).toThrow(/No such languageModel/i);
     });
   });

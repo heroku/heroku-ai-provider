@@ -1,5 +1,5 @@
-import { createJsonErrorResponseHandler } from '@ai-sdk/provider-utils';
-import { z } from 'zod/v4';
+import { createJsonErrorResponseHandler } from "@ai-sdk/provider-utils";
+import { z } from "zod/v4";
 
 const herokuErrorDataSchema = z.object({
   error: z.object({
@@ -13,5 +13,5 @@ export type HerokuErrorData = z.infer<typeof herokuErrorDataSchema>;
 
 export const herokuFailedResponseHandler = createJsonErrorResponseHandler({
   errorSchema: herokuErrorDataSchema,
-  errorToMessage: data => data.error.message,
+  errorToMessage: (data) => data.error.message,
 });

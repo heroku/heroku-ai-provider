@@ -29,12 +29,12 @@ export HEROKU_EMBEDDING_URL=$(heroku config:get -a $APP_NAME EMBEDDING_URL)
 ### Basic Usage
 
 ```typescript
-import { heroku } from 'heroku-ai-provider';
+import { heroku } from "heroku-ai-provider";
 
 const model = heroku.embedding(process.env.HEROKU_EMBEDDING_MODEL_ID);
 
 const { embeddings } = await model.doEmbed({
-  values: ['Hello world', 'How are you?'],
+  values: ["Hello world", "How are you?"],
 });
 
 console.log(embeddings);
@@ -44,13 +44,13 @@ console.log(embeddings);
 ### Custom Provider Configuration
 
 ```typescript
-import { createHeroku } from 'heroku-ai-provider';
+import { createHeroku } from "heroku-ai-provider";
 
 const herokuProvider = createHeroku({
-  apiKey: 'your-api-key',
-  baseURL: 'https://custom-heroku-api.com/v1',
+  apiKey: "your-api-key",
+  baseURL: "https://custom-heroku-api.com/v1",
   headers: {
-    'X-Custom-Header': 'custom-value',
+    "X-Custom-Header": "custom-value",
   },
 });
 
@@ -61,12 +61,12 @@ const model = herokuProvider.embedding(process.env.HEROKU_EMBEDDING_MODEL_ID);
 
 ```typescript
 const { embeddings } = await model.doEmbed({
-  values: ['Hello world'],
+  values: ["Hello world"],
   providerOptions: {
     heroku: {
-      inputType: 'search_document',
-      encodingFormat: 'base64',
-      embeddingType: 'binary',
+      inputType: "search_document",
+      encodingFormat: "base64",
+      embeddingType: "binary",
       allowIgnoredParams: true,
     },
   },
@@ -89,6 +89,7 @@ pnpm example <file> <function>
 ```
 
 ### Argument Descriptions
+
 - `<file>`: example files use the naming convention: `<file>.example.ts`. They can be found in the `examples/` directory.
 - `<function>`: the name of the function, within the example file, to run.
 
