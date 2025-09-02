@@ -16,7 +16,7 @@ import {
 } from './heroku-embedding-options';
 import { herokuFailedResponseHandler } from './heroku-error';
 
-type HerokuEmbeddingConfig = {
+interface HerokuEmbeddingConfig {
   provider: string;
   baseURL: string;
   headers: Record<string, string | undefined>;
@@ -32,6 +32,11 @@ export class HerokuEmbeddingModel implements EmbeddingModelV2<string> {
 
   private readonly config: HerokuEmbeddingConfig;
 
+  /**
+   * 
+   * @param modelId 
+   * @param config 
+   */
   constructor(modelId: HerokuEmbeddingModelId, config: HerokuEmbeddingConfig) {
     this.modelId = modelId;
     this.config = config;
