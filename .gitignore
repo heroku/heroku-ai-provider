@@ -4,6 +4,7 @@
 .envrc
 .next
 .cursor
+coverage
 dist
 dist-ssr
 examples/*/build
