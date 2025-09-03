@@ -100,6 +100,7 @@ jobs:
     strategy:
       matrix:
         node-version: [22.x]
+        os: [pub-hk-ubuntu-22.04-small]
 
     steps:
       - name: Checkout
