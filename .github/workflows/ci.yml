@@ -34,7 +34,7 @@ jobs:
         run: pnpm run prettier-check
 
   eslint:
-    runs-on: ${{ matrix.node-version }}
+    runs-on: ${{ matrix.os }}
     name: 'ESLint'
 
     strategy:
@@ -64,7 +64,7 @@ jobs:
         run: pnpm run lint
 
   types:
-    runs-on: ${{ matrix.node-version }}
+    runs-on: ${{ matrix.os }}
     name: 'TypeScript'
 
     strategy:
@@ -94,7 +94,7 @@ jobs:
         run: pnpm run type-check
 
   test:
-    runs-on: ${{ matrix.node-version }}
+    runs-on: ${{ matrix.os }}
     name: 'Test'
 
     strategy:
