@@ -1,38 +1,44 @@
-# Pull Request
+<!--
+When creating a PR, be sure to prepend the PR title with the Conventional Commit type (`feat`, `fix`, or `chore`). This is how we manage package versioning and generating CHANGELOG notes.
+
+Examples:
+- "feat: add growl notification to spaces:wait"
+- "fix: handle special characters in app names"
+- "chore: add dist directory to .gitignore"
+
+The expected Conventional Commit types are listed below.
+
+Learn more about [Conventional Commits](https://www.conventionalcommits.org/).
+-->
 
 ## Summary
+<!-- Brief description of the changes in this PR. -->
 
-<!--
-Briefly explain the purpose of this PR.
-What functionality or bug does it address?
-Reference any related issues with "Fixes #123" or "Closes #456".
--->
+## Type of Change
+### Breaking Changes (major semver update)
+- [ ] Add a `!` after your change type to denote a change that breaks current behavior
 
-Fixes #
+### Feature Additions (minor semver update)
+- [ ] **feat**: Introduces a new feature to the codebase
 
----
-
-## What Changed
-
-<!--
-Describe the key changes in this PR.
-If it's a bug fix, describe what was broken and how it's fixed.
-If it's a feature, explain how it works and any limitations.
--->
-
----
-
-## Checklist
-
-- [ ] I’ve added or updated unit tests where necessary
-- [ ] I’ve added or updated documentation
-- [ ] I’ve manually tested the functionality in this PR
-- [ ] This pull request is ready for review
-
----
+### Patch Updates (patch semver update)
+- [ ] **fix**: Bug fix
+- [ ] **deps**: Dependency upgrade
+- [ ] **revert**: Revert a previous commit
+- [ ] **chore**: Change that does not affect production code
+- [ ] **refactor**: Refactoring existing code without changing behavior
+- [ ] **test**: Add/update/remove tests
 
 ## Testing
+**Notes**: 
+<!-- Add any context/setup necessary for testing. -->
 
-<!--
-Explain how you tested your changes. Include commands, env details, or Heroku resources if needed.
--->
+**Steps**:
+1. Replace this text with a list of steps used to validate changes or type 'Passing CI suffices'.
+2. ...
+
+## Screenshots (if applicable)
+
+## Related Issues
+GitHub issue: #[GitHub issue number]
+GUS work item: [WI number](WI link)
