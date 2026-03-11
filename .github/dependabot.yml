@@ -1,24 +1,31 @@
 version: 2
 updates:
-  - package-ecosystem: 'github-actions'
-    directory: '/'
+  - package-ecosystem: "github-actions"
+    directory: "/"
     open-pull-requests-limit: 5
     schedule:
-      interval: 'weekly'
-      time: '12:00'
-      day: 'sunday'
-      timezone: 'America/Los_Angeles'
-  - package-ecosystem: 'npm'
-    directory: '/'
+      interval: "weekly"
+      time: "12:00"
+      day: "sunday"
+      timezone: "America/Los_Angeles"
+    commit-message:
+      prefix: "deps"
+  - package-ecosystem: "npm"
+    directory: "/"
     open-pull-requests-limit: 5
     schedule:
-      interval: 'weekly'
-      time: '12:00'
-      day: 'sunday'
-      timezone: 'America/Los_Angeles'
+      interval: "weekly"
+      time: "12:00"
+      day: "sunday"
+      timezone: "America/Los_Angeles"
+    commit-message:
+      prefix: "deps"
     groups:
-      dev-deps:
-        dependency-type: 'development'
-      patch-dependencies:
+      dev-patch-minor-dependencies:
+        dependency-type: "development"
         update-types:
-          - 'patch'
+          - "patch"
+          - "minor"
+    ignore:
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
