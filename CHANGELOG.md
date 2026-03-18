@@ -2,7 +2,6 @@
 
 ## [0.6.1](https://github.com/heroku/heroku-ai-provider/compare/heroku-ai-provider-v0.6.0...heroku-ai-provider-v0.6.1) (2026-03-18)
 
-
 ### Bug Fixes
 
 * adds repository.url to package.json ([978fc97](https://github.com/heroku/heroku-ai-provider/commit/978fc97059b53e2e331abcd54bb44d4f2f3e7ec0))
