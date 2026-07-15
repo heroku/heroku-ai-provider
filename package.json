@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@ai-sdk/provider": "^2.0.0",
-    "@ai-sdk/provider-utils": "^3.0.7"
+    "@ai-sdk/provider-utils": "^5.0.10"
   },
   "repository": {
     "type": "git",
