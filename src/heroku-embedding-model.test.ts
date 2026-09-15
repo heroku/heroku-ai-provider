@@ -3,7 +3,7 @@ import {
   EmbeddingModelV2Embedding,
   TooManyEmbeddingValuesForCallError,
 } from "@ai-sdk/provider";
-import { createTestServer } from "@ai-sdk/provider-utils/test";
+import { createTestServer } from "@ai-sdk/test-server/with-vitest";
 import { createHeroku } from "./heroku-provider";
 
 const dummyEmbeddings = [
