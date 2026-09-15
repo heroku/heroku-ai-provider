@@ -4,7 +4,7 @@ export default defineConfig([
   {
     entry: ["src/index.ts"],
     deps: {
-      neverBundle: true
+      neverBundle: true,
     },
     format: ["cjs", "esm"],
     dts: true,
