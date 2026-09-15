@@ -1,8 +1,7 @@
 import { z } from "zod/v4";
 
 export type HerokuEmbeddingModelId =
-  | "cohere-embed-multilingual"
-  | (string & {});
+  "cohere-embed-multilingual" | (string & {});
 
 export const herokuEmbeddingOptions = z.object({
   /**

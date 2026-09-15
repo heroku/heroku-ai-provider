@@ -171,7 +171,7 @@ importers:
         version: 3.0.16
       '@ai-sdk/provider-utils':
         specifier: ^4.0.51
-        version: 4.0.51(zod@4.3.6)
+        version: 4.0.51(zod@4.6.2)
     devDependencies:
       '@ai-sdk/test-server':
         specifier: ^2.0.1
@@ -187,13 +187,13 @@ importers:
         version: 4.1.11(vitest@4.1.11)
       ai:
         specifier: ^6.0.283
-        version: 6.0.283(zod@4.3.6)
+        version: 6.0.283(zod@4.6.2)
       eslint:
         specifier: ^10.10.0
         version: 10.10.0(supports-color@7.2.0)
       prettier:
         specifier: ^3.6.2
-        version: 3.8.1
+        version: 3.9.6
       tsdown:
         specifier: ^0.23
         version: 0.23.0(tsx@4.23.13)(typescript@5.9.3)
@@ -214,7 +214,7 @@ importers:
         version: 4.1.11(@opentelemetry/api@1.9.0)(@types/node@25.5.0)(@vitest/coverage-v8@4.1.11)(msw@2.15.0(@types/node@25.5.0)(typescript@5.9.3))(vite@8.3.0(@types/node@25.5.0)(esbuild@0.28.2)(tsx@4.23.13))
       zod:
         specifier: ^4.1.8
-        version: 4.3.6
+        version: 4.6.2
 
 packages:
 
@@ -1425,8 +1425,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.8.1:
-    resolution: {integrity: sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==}
+  prettier@3.9.6:
+    resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -1773,25 +1773,25 @@ packages:
   yuku-parser@0.9.5:
     resolution: {integrity: sha512-IBnAdNVMswWbJcM7woPluOudectJzFjJ1N8jVRxP9Uq4CIv5hZdBIcdmtRbFDYF/Ph2j2gVup4YJ4N9mh0jYFA==}
 
-  zod@4.3.6:
-    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
+  zod@4.6.2:
+    resolution: {integrity: sha512-lh5RCAGFa1Cm2hjtNwLQhSs/AsqdWnTQaBER9fEwN/88pSh7KOtJavtBx/0VlkN/uFd61SwYmljLMDAsHlvzBQ==}
 
 snapshots:
 
-  '@ai-sdk/gateway@3.0.194(zod@4.3.6)':
+  '@ai-sdk/gateway@3.0.194(zod@4.6.2)':
     dependencies:
       '@ai-sdk/provider': 3.0.16
-      '@ai-sdk/provider-utils': 4.0.51(zod@4.3.6)
+      '@ai-sdk/provider-utils': 4.0.51(zod@4.6.2)
       '@vercel/oidc': 3.2.0
-      zod: 4.3.6
+      zod: 4.6.2
 
-  '@ai-sdk/provider-utils@4.0.51(zod@4.3.6)':
+  '@ai-sdk/provider-utils@4.0.51(zod@4.6.2)':
     dependencies:
       '@ai-sdk/provider': 3.0.16
       '@standard-schema/spec': 1.1.0
       eventsource-parser: 3.1.1
       undici: 6.28.1
-      zod: 4.3.6
+      zod: 4.6.2
 
   '@ai-sdk/provider@3.0.16':
     dependencies:
@@ -2332,13 +2332,13 @@ snapshots:
 
   acorn@8.18.0: {}
 
-  ai@6.0.283(zod@4.3.6):
+  ai@6.0.283(zod@4.6.2):
     dependencies:
-      '@ai-sdk/gateway': 3.0.194(zod@4.3.6)
+      '@ai-sdk/gateway': 3.0.194(zod@4.6.2)
       '@ai-sdk/provider': 3.0.16
-      '@ai-sdk/provider-utils': 4.0.51(zod@4.3.6)
+      '@ai-sdk/provider-utils': 4.0.51(zod@4.6.2)
       '@opentelemetry/api': 1.9.0
-      zod: 4.3.6
+      zod: 4.6.2
 
   ajv@6.14.0:
     dependencies:
@@ -2800,7 +2800,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.8.1: {}
+  prettier@3.9.6: {}
 
   punycode@2.3.1: {}
 
@@ -3101,4 +3101,4 @@ snapshots:
       '@yuku-parser/binding-win32-arm64': 0.9.5
       '@yuku-parser/binding-win32-x64': 0.9.5
 
-  zod@4.3.6: {}
+  zod@4.6.2: {}
