@@ -1,2 +1,6 @@
 allowBuilds:
   esbuild: true
+  msw: true
+minimumReleaseAgeExclude:
+  - '@ai-sdk/gateway@3.0.194'
+  - ai@6.0.283
