@@ -22,7 +22,7 @@
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.3",
     "@vitest/coverage-v8": "^4.1.11",
-    "ai": "^6.0.283",
+    "ai": "^7.0.118",
     "eslint": "^10.10.0",
     "prettier": "^3.6.2",
     "tsdown": "^0.23",
