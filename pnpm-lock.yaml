@@ -168,7 +168,7 @@ importers:
     dependencies:
       '@ai-sdk/provider':
         specifier: ^3.0.16
-        version: 3.0.16
+        version: 3.0.18
       '@ai-sdk/provider-utils':
         specifier: ^4.0.51
         version: 4.0.55(zod@4.6.5)
@@ -235,10 +235,6 @@ packages:
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
-
-  '@ai-sdk/provider@3.0.16':
-    resolution: {integrity: sha512-9Av6kg0t/IN/dcYAAmEJ4B9OPhcEJqwSR+GfHEA8olRkindXpUHadc3p3cyvgFUQFTVm1G5thtsmgZ9yVb2w3A==}
-    engines: {node: '>=18'}
 
   '@ai-sdk/provider@3.0.18':
     resolution: {integrity: sha512-IpefF5ssZVOZCD4Wu7zxt6PwZoGT2HLVjxpJ10Bjx6EAmRfLYJPjyrfxb0RYDlwvXnDb9nkQ7Do/oJVDuRFzew==}
@@ -1927,10 +1923,6 @@ snapshots:
       eventsource-parser: 3.1.1
       undici: 7.30.0
       zod: 4.6.5
-
-  '@ai-sdk/provider@3.0.16':
-    dependencies:
-      json-schema: 0.4.0
 
   '@ai-sdk/provider@3.0.18':
     dependencies:
