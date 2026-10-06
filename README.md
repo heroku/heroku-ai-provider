@@ -76,7 +76,7 @@ const { embeddings } = await model.doEmbed({
 ## Running Tests
 
 ```bash
-pnpm test
+npm test
 ```
 
 ## Running Examples
@@ -85,7 +85,7 @@ We have created some examples to demonstrate common use cases. To run
 an example, use the command:
 
 ```bash
-pnpm example <file> <function>
+npm run example -- <file> <function>
 ```
 
 ### Argument Descriptions
@@ -96,7 +96,7 @@ pnpm example <file> <function>
 ### Example Usage
 
 ```bash
-pnpm example embeddings batch
+npm run example -- embeddings batch
 ```
 
 ## API Reference
