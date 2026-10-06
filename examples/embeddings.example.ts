@@ -11,7 +11,7 @@ import { getEmbeddingModelFromEnv, cosineSimilarity } from "./utils";
  * - HEROKU_EMBEDDING_MODEL_ID
  * - HEROKU_EMBEDDING_KEY
  *
- * run command: `pnpm example embeddings basic`
+ * run command: `npm run example -- embeddings basic`
  *
  */
 export async function basic() {

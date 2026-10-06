@@ -16,7 +16,7 @@
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
-  "packageManager": "pnpm@12.4.1",
+  "packageManager": "npm@11.19.0",
   "devDependencies": {
     "@ai-sdk/test-server": "^2.0.1",
     "@eslint/js": "^10.0.1",
@@ -40,5 +40,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/heroku/heroku-ai-provider"
+  },
+  "allowScripts": {
+    "esbuild": true,
+    "msw": true
   }
 }

@@ -6,8 +6,10 @@ async function runExample() {
   const [, , exampleFile, functionName] = process.argv;
 
   if (!exampleFile || !functionName) {
-    console.error("Usage: pnpm example <file> <function>");
-    console.error("Example: pnpm example embeddings basicEmbeddingExample");
+    console.error("Usage: npm run example -- <file> <function>");
+    console.error(
+      "Example: npm run example -- embeddings basicEmbeddingExample",
+    );
     process.exit(1);
   }
 
