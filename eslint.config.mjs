@@ -9,6 +9,7 @@ export default defineConfig(
   tseslint.configs.recommended,
   tseslint.configs.stylistic,
   globalIgnores([
-    "dist/**/*", "workflows-repo/**/*"
+    "dist/**/*",
+    "workflows-repo/"
   ])
 );
